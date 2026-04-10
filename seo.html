@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CeraVe Prototype</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .phone {
+    width: 320px;
+    height: 640px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  .screen { display: none; }
+  .active { display: block; }
+
+  h2 { color: #1f4e79; margin-bottom: 10px; }
+  p { font-size: 14px; }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #1f4e79;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .option {
+    background: #eef3f8;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .card {
+    background: #f4f7fb;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .small {
+    font-size: 12px;
+    color: gray;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- HOME -->
+  <div class="screen active" id="home">
+    <h2>CeraVe</h2>
+    <p>Build a skincare routine that actually works for you.</p>
+
+    <button onclick="goTo('quiz')">Start Quiz</button>
+
+    <div class="small">
+      ✔ Dermatologist recommended<br>
+      ✔ Personalized routine<br>
+      ✔ Simple 3 steps
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="screen" id="quiz">
+    <h2>Your Skin Type</h2>
+    <p>What’s your skin type?</p>
+
+    <div class="option" onclick="selectOption(this)">Oily</div>
+    <div class="option" onclick="selectOption(this)">Dry</div>
+    <div class="option" onclick="selectOption(this)">Combination</div>
+    <div class="option" onclick="selectOption(this)">Not sure</div>
+
+    <button onclick="goTo('results')">Next</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen" id="results">
+    <h2>Your Routine</h2>
+
+    <div class="card">
+      <b>Cleanser</b><br>
+      Hydrating Facial Cleanser<br>
+      <small>Gently cleans without drying your skin</small>
+    </div>
+
+    <div class="card">
+      <b>Moisturizer</b><br>
+      Daily Moisturizing Lotion<br>
+      <small>Keeps your skin hydrated all day</small>
+    </div>
+
+    <div class="card">
+      <b>SPF</b><br>
+      AM Facial Lotion SPF 30<br>
+      <small>Protects your skin from sun damage</small>
+    </div>
+
+    <div class="small">
+      Based on your answers. Dermatologist recommended and beginner-friendly.
+    </div>
+
+    <button onclick="goTo('progress')">Start Tracking</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="screen" id="progress">
+    <h2>Week 1 Check-In</h2>
+    <p>How is your skin feeling?</p>
+
+    <div class="option">Improving</div>
+    <div class="option">No Change</div>
+    <div class="option">Breaking Out</div>
+
+    <div class="small">
+      Results take 2–4 weeks. Stay consistent.
+    </div>
+
+    <button onclick="goTo('tips')">View Tips</button>
+  </div>
+
+  <!-- TIPS -->
+  <div class="screen" id="tips">
+    <h2>Skincare Tips</h2>
+
+    <div class="card">☀️ Always apply SPF in the morning</div>
+    <div class="card">🌙 Moisturize at night</div>
+    <div class="card">💧 Ceramides help repair your skin</div>
+
+    <button onclick="goTo('home')">Restart</button>
+  </div>
+
+</div>
+
+<script>
+  function goTo(screen) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screen).classList.add('active');
+  }
+
+  function selectOption(el) {
+    document.querySelectorAll('.option').forEach(o => o.style.background = "#eef3f8");
+    el.style.background = "#cfe2ff";
+  }
+</script>
+
+</body>
+</html>
